@@ -53,6 +53,7 @@ void err(int error_code, ...)
  * (7) ~> When the stack it empty for pop.
  * (8) ~> When stack is too short for operation.
  * (9) ~> Division by zero.
+ * (10) ~> if stack contian less than two elements
  */
 void more_err(int error_code, ...)
 {
@@ -79,6 +80,11 @@ void more_err(int error_code, ...)
 		case 9:
 			printf("L%d: division by zero\n",
 				va_arg(ag, unsigned int));
+			break;
+		case 10:
+			l_num = va_arg(ag, unsigned int);
+			op = va_arg(ag, char *);
+			printf("L%d: can't %s, mul\n", l_num, op);
 			break;
 		default:
 			break;
